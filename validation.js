@@ -7,18 +7,30 @@ function validateForm() {
   var nameRegex = /^[a-zA-Z\s]+$/;
   var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+  var errorMessages = "";
+
+  if (name.trim() === "") {
+    errorMessages += "Please enter your name\n";
+  }
+
   if (!nameRegex.test(name)) {
-    alert("Please enter a valid name");
-    return false;
+    errorMessages += "Please enter a valid name (only letters and spaces are allowed)\n";
+  }
+
+  if (email.trim() === "") {
+    errorMessages += "Please enter your email address\n";
   }
 
   if (!emailRegex.test(email)) {
-    alert("Please enter a valid email address");
-    return false;
+    errorMessages += "Please enter a valid email address\n";
   }
 
-  if (message === "") {
-    alert("Please enter a message");
+  if (message.trim() === "") {
+    errorMessages += "Please enter a message\n";
+  }
+
+  if (errorMessages !== "") {
+    document.getElementById("errorMessages").textContent = errorMessages;
     return false;
   }
 
